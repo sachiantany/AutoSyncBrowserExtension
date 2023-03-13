@@ -1,10 +1,3 @@
-var timerId = null;
-
-// console.log("Content started...")
-// clearInterval();
-// console.log("clear interval 0...")
-
-
 // Find the sync button and click it
 function clickSyncButton() {
   const syncButton = document.getElementById('AppHeader__sync');
@@ -14,30 +7,23 @@ function clickSyncButton() {
   }
 }
 
-chrome.storage.sync.get(['frequency'], function(result) {
+chrome.storage.sync.get(['frequency','timer'], function(result) {
     const frequency = result.frequency;
-    console.log("Inside the Content 1...")
+    var timerId = result.timer;
 
-    if (timerId === null) {
-        timerId = setInterval(function() {
-          // your code here
-          console.log("Inside the Content 2...: ",timerId)
-          clickSyncButton();
+    var boolCL = clearInterval(timerId);
 
-        }, frequency*1000);
-      }      
-    // setInterval(clickSyncButton, frequency*1000);
+    console.log("Inside the Content 1...",boolCL);
+    console.log("Inside the Content 2...",timerId);
+
+    timerId = setInterval(function() {
+      console.log("Inside the Content 3...: ",timerId)
+      chrome.storage.sync.set({'timer': timerId });
+
+      clickSyncButton();
+
+    }, frequency*1000);
+   
 
 });
-
-//Clear the interval
-
-// chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-//     if (request.stopFunction) {
-//       clearInterval(timerId);
-//       console.log("clearInterval 1...")
-
-//       timerId = null;
-//     }
-//   });
 

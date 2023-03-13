@@ -5,7 +5,13 @@
     "description": "Syncs AppSheet every 10 seconds",
     "permissions": ["tabs", "activeTab","scripting","storage"],
     "action": {
-         "default_popup": "popup.html"
+         "default_popup": "popup.html",
+         "default_icon": {
+            "16": "sync.png",
+            "32": "sync.png",
+            "48": "sync.png",
+            "128": "sync.png"
+        }
     },
     "background": {
         "service_worker": "background.js"

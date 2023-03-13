@@ -1,6 +1,8 @@
 function injectTheScript() {
     // Wuery the active tab, which will be only one tab and inject the script in it.
     chrome.tabs.query({active: true, currentWindow: true}, tabs => {
+      console.log('injectTheScript!');
+
         chrome.scripting.executeScript({target: {tabId: tabs[0].id}, files: ['content.js']})
     })
 }
@@ -11,18 +13,11 @@ var hiddenField = document.getElementById('hiddenField');
 var stopBtn = document.getElementById('stopBtn');
 
 
-console.log('numberField is 2: ' +numberField1.value);
+console.log('numberField in popup: ' +numberField1.value);
 
 submitBtn.addEventListener('click', function(e) {
   e.preventDefault();
   chrome.storage.sync.set({ 'frequency': numberField1.value }, function() {
-
-    // Update status to let user know options were saved.
-    // var status = document.getElementById('status');
-    // status.textContent = 'Options saved.';
-    // setTimeout(function() {
-    //   status.textContent = '';
-    // }, 750);
 
     hiddenField.value = numberField1.value;
     console.log('Saved value:', numberField1.value);
@@ -36,21 +31,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
       const frequency = result.frequency;
 
-      console.log('frequency is 2: ' +frequency);
+      console.log('frequency in popup.js: ' +frequency);
 
       if (frequency) {
         numberField1.value = frequency;
         hiddenField.value = frequency;
-
-        injectTheScript();
+        // injectTheScript();
       }
     });
   });
 
 //Stop btn
-
 stopBtn.addEventListener('click', function() {
-    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, { stopFunction: true });
+    chrome.storage.sync.get(['frequency','timer'], function(result) {
+
+      var frequency = result.frequency;
+      var timer = result.timer;
+      console.log('stop btn: ' +frequency);
+
+      clearInterval(timer);
+      chrome.storage.sync.set({ 'frequency': '','timer': '' }, function() {
+          numberField1.value = '';
+          hiddenField.value = '';
+          // injectTheScript();
+        
+      });
+
     });
+
   });
