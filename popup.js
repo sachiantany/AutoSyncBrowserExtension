@@ -42,21 +42,21 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 //Stop btn
-stopBtn.addEventListener('click', function() {
-    chrome.storage.sync.get(['frequency','timer'], function(result) {
+// stopBtn.addEventListener('click', function() {
+//     chrome.storage.sync.get(['frequency','timer'], function(result) {
 
-      var frequency = result.frequency;
-      var timer = result.timer;
-      console.log('stop btn: ' +frequency);
+//       var frequency = result.frequency;
+//       var timer = result.timer;
+//       console.log('stop btn: ' +frequency);
 
-      clearInterval(timer);
-      chrome.storage.sync.set({ 'frequency': '','timer': '' }, function() {
-          numberField1.value = '';
-          hiddenField.value = '';
-          // injectTheScript();
+//       clearInterval(timer);
+//       chrome.storage.sync.set({ 'frequency': '','timer': '' }, function() {
+//           numberField1.value = '';
+//           hiddenField.value = '';
+//           // injectTheScript();
         
-      });
+//       });
 
-    });
+//     });
 
-  });
+//   });
