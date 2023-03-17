@@ -10,7 +10,7 @@ chrome.tabs.onCreated.addListener(function(tabs) {
   console.log("On create!");
 
   chrome.storage.sync.get(['frequency','timer'], function(result) {
-    const frequency = result.frequency;
+    const frequency = 120;
     const timerId = result.timer;
 
     if (frequency) {
