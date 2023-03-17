@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
     "name": "AppSheet Sync",
-    "version": "1.0.2",
-    "description": "Syncs AppSheet every 10 seconds",
+    "version": "1.0.3",
+    "description": "Automatically refreshes a Appsheet at a user-defined frequency",
     "permissions": ["tabs", "activeTab","scripting","storage"],
     "action": {
          "default_popup": "popup.html",
@@ -16,7 +16,6 @@
     "background": {
         "service_worker": "background.js"
     },
-    "options_page": "options.html",
     "content_scripts": [
         {
             "matches": [

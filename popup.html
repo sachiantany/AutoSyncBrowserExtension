@@ -14,8 +14,22 @@
     <div class="form-row align-items-center">
       <div class="col-auto my-1">
         <label class="mr-sm-2" for="inlineFormCustomSelect">Select Sync Duration (Seconds)</label>
-        <input type="number" class="form-control" id="numberField1">
-        <input type="hidden" id="hiddenField" name="hiddenField">
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="numberField1">
+          <option selected>Open this select menu</option>
+          <option value="15">15</option>
+          <option value="30">30</option>
+          <option value="45">45</option>
+          <option value="60">60</option>
+        </select>
+        <select hidden class="form-select" aria-label="Default select example" id="hiddenField">
+          <option selected>Open this select menu</option>
+          <option value="15">15</option>
+          <option value="30">30</option>
+          <option value="45">45</option>
+          <option value="60">60</option>
+        </select>
+        <!-- <input type="number" class="form-control" id="numberField1"> -->
+        <!-- <input type="hidden" id="hiddenField" name="hiddenField"> -->
       </div>
       <div class="col-auto my-1">
         <div class="custom-control custom-checkbox mr-sm-2">
@@ -24,9 +38,9 @@
         </div>
       </div>
       <div class="col-auto my-1">
-        <div id="status"></div>
+        <!-- <div id="status"></div> -->
         <button type="submit" id="submitBtn" value="Save" class="btn btn-primary">Save</button>
-        <button type="submit" id="stopBtn" value="Save" class="btn btn-primary">Stop</button>
+        <!-- <button type="submit" id="stopBtn" value="Save" class="btn btn-primary">Stop</button> -->
       </div>
     </div>
   </form>

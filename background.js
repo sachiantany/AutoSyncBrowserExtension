@@ -13,8 +13,6 @@ chrome.tabs.onCreated.addListener(function(tabs) {
     const frequency = result.frequency;
     const timerId = result.timer;
 
-    console.log("Inside the background 1...", timerId);
-
     if (frequency) {
       // Check if the URL matches the saved URL in storage
       chrome.tabs.query({active: true, currentWindow: true}, tabs => {

@@ -13,11 +13,7 @@ chrome.storage.sync.get(['frequency','timer'], function(result) {
 
     var boolCL = clearInterval(timerId);
 
-    console.log("Inside the Content 1...",boolCL);
-    console.log("Inside the Content 2...",timerId);
-
     timerId = setInterval(function() {
-      console.log("Inside the Content 3...: ",timerId)
       chrome.storage.sync.set({'timer': timerId });
 
       clickSyncButton();
