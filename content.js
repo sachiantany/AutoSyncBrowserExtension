@@ -7,19 +7,33 @@ function clickSyncButton() {
   }
 }
 
-chrome.storage.sync.get(['frequency','timer'], function(result) {
-    const frequency = result.frequency;
-    var timerId = result.timer;
+var storage = chrome.storage.sync;
 
-    var boolCL = clearInterval(timerId);
+storage.get(['frequency', 'timer'], function(result) {
+  const frequency = result.frequency;
+  let timerId = result.timer;
 
-    timerId = setInterval(function() {
-      chrome.storage.sync.set({'timer': timerId });
+  clearInterval(timerId);
 
-      clickSyncButton();
+  timerId = setInterval(function() {
+    storage.set({'timer': timerId});
+    clickSyncButton();
+  }, frequency * 1000);
+});
 
-    }, frequency*1000);
+// chrome.storage.sync.get(['frequency','timer'], function(result) {
+//     const frequency = result.frequency;
+//     var timerId = result.timer;
+
+//     var boolCL = clearInterval(timerId);
+
+//     timerId = setInterval(function() {
+//       chrome.storage.sync.set({'timer': timerId });
+
+//       clickSyncButton();
+
+//     }, frequency*1000);
    
 
-});
+// });
 

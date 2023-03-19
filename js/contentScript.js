@@ -34,14 +34,14 @@
     // });
   });
 
-  runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.m === "start") {
-      // Todo
-      sendResponse();
-    } else {
-      sendResponse();
-    }
-  });
+  // runtime.onMessage.addListener((message, sender, sendResponse) => {
+  //   if (message.m === "start") {
+  //     // Todo
+  //     sendResponse();
+  //   } else {
+  //     sendResponse();
+  //   }
+  // });
 
   //
   // Some helper functions:

@@ -1,22 +1,27 @@
-chrome.runtime.onInstalled.addListener(function() {
-  console.log("On install!")
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+  if (message.error && message.error.includes("Cannot access a chrome:// URL")) {
+    console.error("Error: Cannot access a chrome:// URL");
+    // Handle the error as needed
+  }
+});
 
+chrome.runtime.onInstalled.addListener(function() {
   // Set default values in storage
-  chrome.storage.sync.set({frequency: '',timer: '' });
+  chrome.storage.sync.set({ "frequency": '', "timer": '' }, function() {
+    console.log("Storage initialized");
+  });
+
 });
 
 
 chrome.tabs.onCreated.addListener(function(tabs) {
-  console.log("On create!");
-
   chrome.storage.sync.get(['frequency','timer'], function(result) {
-    const frequency = 120;
+    const frequency = result.frequency;
     const timerId = result.timer;
 
     if (frequency) {
-      // Check if the URL matches the saved URL in storage
       chrome.tabs.query({active: true, currentWindow: true}, tabs => {
-      chrome.scripting.executeScript({target: {tabId: tabs[0].id}, files: ['content.js']})
+        chrome.scripting.executeScript({target: {tabId: tabs[0].id}, files: ['content.js']})
       });
     }
 
@@ -25,17 +30,11 @@ chrome.tabs.onCreated.addListener(function(tabs) {
 
 chrome.tabs.onUpdated.addListener(function(tabs) {
   console.log("On update!");
-  // Check if the URL matches the saved URL in storage
   chrome.storage.sync.get(['frequency','timer'], function(data) {
     const frequency = data.frequency;
     const timerId = data.timer;
 
-    if (frequency) {
-      // clearInterval(timerId);
-      // Send a message to the content script to start the function with the saved frequency value
-      // chrome.tabs.sendMessage(tabs[0].id, { start: true, frequency: data.frequency });
-    }  
-
+    console.log("frequency : ",frequency, "timerID :", timerId);
   });
 
 });
