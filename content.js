@@ -9,6 +9,7 @@ function clickSyncButton() {
 
 var storage = chrome.storage.sync;
 
+//Get the frequency and set the timer
 storage.get(['frequency', 'timer'], function(result) {
   const frequency = result.frequency;
   let timerId = result.timer;
@@ -21,19 +22,4 @@ storage.get(['frequency', 'timer'], function(result) {
   }, frequency * 1000);
 });
 
-// chrome.storage.sync.get(['frequency','timer'], function(result) {
-//     const frequency = result.frequency;
-//     var timerId = result.timer;
-
-//     var boolCL = clearInterval(timerId);
-
-//     timerId = setInterval(function() {
-//       chrome.storage.sync.set({'timer': timerId });
-
-//       clickSyncButton();
-
-//     }, frequency*1000);
-   
-
-// });
 

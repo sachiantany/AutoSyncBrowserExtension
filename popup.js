@@ -3,6 +3,7 @@ const submitBtn = document.getElementById('submitBtn');
 const hiddenField = document.getElementById('hiddenField');
 const stopBtn = document.getElementById('stopBtn');
 
+//Inject the script content.js
 function injectTheScript() {
   chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
     chrome.scripting.executeScript({ target: { tabId: tabs[0].id }, files: ['content.js'] }, () => {
@@ -14,6 +15,7 @@ function injectTheScript() {
 
 }
 
+//Save the user values
 submitBtn.addEventListener('click', e => {
   e.preventDefault();
   chrome.storage.sync.set({ 'frequency': numberField1.value }, () => {
@@ -23,6 +25,7 @@ submitBtn.addEventListener('click', e => {
   });
 });
 
+//Update the user value in the popup
 document.addEventListener('DOMContentLoaded', () => {
   chrome.storage.sync.get(['frequency'], result => {
     const frequency = result.frequency;

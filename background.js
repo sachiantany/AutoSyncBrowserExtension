@@ -1,7 +1,6 @@
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   if (message.error && message.error.includes("Cannot access a chrome:// URL")) {
     console.error("Error: Cannot access a chrome:// URL");
-    // Handle the error as needed
   }
 });
 
