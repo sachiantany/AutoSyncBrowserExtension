@@ -1,6 +1,7 @@
 // Find the sync button and click it
 function clickSyncButton() {
   const syncButton = document.getElementById('AppHeader__sync');
+
   if (syncButton) {
     console.log("Syncing...")
     syncButton.click();

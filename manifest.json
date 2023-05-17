@@ -1,9 +1,9 @@
 {
     "manifest_version": 3,
     "name": "AppSheet Sync",
-    "version": "1.0.3",
+    "version": "1.0.5",
     "description": "Automatically refreshes a Appsheet at a user-defined frequency",
-    "permissions": ["tabs", "activeTab","scripting","storage"],
+    "permissions": ["activeTab","scripting","storage","webNavigation"],
     "action": {
          "default_popup": "popup.html",
          "default_icon": {
@@ -38,7 +38,7 @@
         }
     ],
     "host_permissions": [
-        "https://www.appsheet.com/start/813fe7ee-590b-4566-8838-d967f1f30ff9/*"
+        "https://www.appsheet.com/start/*"
     ]
   }
   
