@@ -15,12 +15,17 @@ storage.get(['frequency', 'timer'], function(result) {
   const frequency = result.frequency;
   let timerId = result.timer;
 
-  clearInterval(timerId);
+  if(frequency =='Pause'){
+    clearInterval(timerId);
+  } else{
+    clearInterval(timerId);
+    timerId = setInterval(function() {
+      storage.set({'timer': timerId});
+      clickSyncButton();
+    }, frequency * 1000);
+  }
+  
 
-  timerId = setInterval(function() {
-    storage.set({'timer': timerId});
-    clickSyncButton();
-  }, frequency * 1000);
 });
 
 
